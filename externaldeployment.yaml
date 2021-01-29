@@ -1,0 +1,24 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: fire-ui
+spec: 
+  selector:
+    matchLabels:
+      app: fire-ui
+  replicas: 1 # tells deployment to run 1 pod matching the template
+  template:
+    metadata:
+      labels:
+        app: fire-ui
+    spec:
+      containers:
+      - name: fire-ui
+        image: gcr.io/roidtc-jan113/external-image-fire:v1.0.0
+        env: 
+        - name: SERVER
+          value: "http://fire-service:8082"
+        ports:
+        - containerPort: 8080
+            
+        

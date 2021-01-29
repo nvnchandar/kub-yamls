@@ -1,0 +1,24 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: fire-api
+spec: 
+  selector:
+    matchLabels:
+      app: fire-api
+  replicas: 1 # tells deployment to run 1 pod matching the template
+  template:
+    metadata:
+      labels:
+        app: fire-api
+    spec:
+      containers:
+      - name: fire-api
+        image: gcr.io/roidtc-jan113/internal-image-fire:v1.0.0
+        env: 
+        - name: GOOGLE_CLOUD_PROJECT
+          value: "roidtc-jan113"
+        ports:
+        - containerPort: 8082
+            
+        
